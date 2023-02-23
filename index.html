@@ -4,8 +4,46 @@
 
     </head>
     <body>
+        <h1 id="clock"></h1>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                font-size: 3rem;
+            }
+    
+            #clock {
+                text-align: center;
+            }
+        </style>
         <script>
             document.querySelector("body").requestFullscreen();
+            function displayTime() {
+			var date = new Date();
+			var hours = date.getHours();
+			var minutes = date.getMinutes();
+			var seconds = date.getSeconds();
+			// Add leading zeros to single-digit minutes and seconds
+			if (minutes < 10) {
+				minutes = "0" + minutes;
+			}
+			if (seconds < 10) {
+				seconds = "0" + seconds;
+			}
+
+			// Build the time string
+			var timeString = hours + ":" + minutes + ":" + seconds;
+
+			// Set the time string in the HTML element with id "clock"
+			document.getElementById("clock").textContent = timeString;
+		}
+
+		// Call the displayTime() function every second
+		setInterval(displayTime, 1000);
         </script>
     </body>
 </html>
